@@ -3,7 +3,7 @@ Contains functions for training and testing a PyTorch model.
 """
 import torch
 
-from tqdm.auto import tqdm
+from tqdm import tqdm
 from typing import Dict, List, Tuple
 
 def train_step(model: torch.nn.Module, 
@@ -37,7 +37,7 @@ def train_step(model: torch.nn.Module,
     train_loss, train_acc = 0, 0
 
     # Loop through data loader data batches
-    for batch, (X, y) in enumerate(dataloader):
+    for batch, (X, y) in tqdm(enumerate(dataloader)):
         # Send data to target device
         X, y = X.to(device), y.to(device)
 
@@ -96,7 +96,7 @@ def test_step(model: torch.nn.Module,
     # Turn on inference context manager
     with torch.inference_mode():
         # Loop through DataLoader batches
-        for batch, (X, y) in enumerate(dataloader):
+        for batch, (X, y) in tqdm(enumerate(dataloader)):
             # Send data to target device
             X, y = X.to(device), y.to(device)
 
