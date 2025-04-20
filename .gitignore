@@ -161,3 +161,4 @@ cython_debug/
 
 # Additional files and folders
 /data
+/models
